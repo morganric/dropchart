@@ -37,7 +37,7 @@
 
 <audio controls="controls">
   Your browser does not support the <code>audio</code> element.
-  <source src="http://res.cloudinary.com/draddoksw/<%=raw @drop.clip.file.identifier %>" type="audio/mp3">
+  <source src="<%= @drop.clip.url() %>" type="audio/mp3">
 </audio>
 <br/><br/>
 
