@@ -7,6 +7,15 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
+gem 'cloudinary'
+gem 'carrierwave'
+gem 'therubyracer'
+# twitter bootstrap css & javascript toolkit
+gem 'twitter-bootswatch-rails', '~> 3.3.4'
+# twitter bootstrap helpers gem, e.g., alerts etc...
+gem 'twitter-bootswatch-rails-helpers'
+gem 'acts-as-taggable-on', '~> 3.4'
+
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'

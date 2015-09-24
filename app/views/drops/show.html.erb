@@ -1,0 +1,77 @@
+
+
+<div class="col-md-12" >
+<div class="col-md-8" >
+<h1>
+  <%= @drop.track %>
+  <br/>
+  <small>
+
+  <strong>by</strong>
+  <%= @drop.artist %>
+
+  <strong>on</strong>
+  <%= @drop.label %>
+
+  <strong>from</strong>
+  <%= @drop.album %>
+  </small>
+</h1>
+<hr/>
+
+
+<audio controls="controls">
+  Your browser does not support the <code>audio</code> element.
+  <source src="http://res.cloudinary.com/draddoksw/video/upload/<%=raw @drop.clip.file.identifier %>" type="audio/mp3">
+</audio>
+<br/><br/>
+
+<div class="well">
+  <strong>Credits:</strong>
+  <%= @drop.credits %>
+  <p>
+  <br/>
+  <strong>Released on:</strong>
+  <%= @drop.release_date %>
+</p>
+</div>
+
+
+
+
+
+<p>
+  <%= link_to raw("<i class='glyphicon glyphicon-shopping-cart'></i>  Buy"), @drop.url, class: "btn btn-lg btn-primary white" %>
+</p>
+
+<p>
+
+  <% @drop.tag_list.each do |tag| %>
+    <label class="label label-default">#<%= tag %></label>
+  <% end %>
+</p>
+
+
+
+
+</div>
+
+<div class="col-md-4">
+<br/>
+  <%= image_tag @drop.cover.url(:standard) %>
+<br/>
+<p class="pull-right">
+<% if user_signed_in? %>
+  <% if current_user.try(:admin?) %>
+    <%= link_to 'Edit', edit_drop_path(@drop) %> |
+    <%= link_to 'Destroy', @drop, method: :delete, data: { confirm: 'Are you sure?' } %>
+
+<% end %>
+<% end %>
+</p>
+</div>
+
+</div>
+</div>
+
+

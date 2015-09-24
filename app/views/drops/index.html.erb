@@ -1,0 +1,16 @@
+
+
+<h1>Drop Chart</h1>
+<hr>
+    <% @drops.each do |drop| %>
+     <h3><%= link_to drop.track, drop %></h3>
+      <% drop.tags.each do |tag| %>
+        <%= tag %>
+      <% end %>
+        <hr/>
+        
+    <% end %>
+  </tbody>
+</table>
+
+<br>

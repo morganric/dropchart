@@ -1,0 +1,38 @@
+<%= simple_form_for(@drop) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+
+ 
+    <%= f.input :user_id, as: :hidden %>
+    <%= f.input :slug, as: :hidden %>
+    
+    <%= f.input :artist %>
+    <%= f.input :track %>
+    <%= f.input :label %>
+    <%= f.input :album %>
+
+     <%= f.label :audio %>
+     <%= f.file_field :audio %>
+       <br/> 
+    <%= f.label :clip %>
+    <%= f.file_field :clip %>
+      <br/> 
+    <%= f.label :cover %>
+    <%= f.file_field :cover %>
+      <br/> 
+    <%= f.input :release_date %>
+    <%= f.input :url %>
+    <%= f.input :credits %>
+    <%= f.input :tag_list %>
+
+       
+    <br/> 
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
+
+

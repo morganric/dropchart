@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: draddoksw
+  api_key: '116331693696683'
+  api_secret: QntwAtdOGl8Blr7q7lnFoHEuBJc
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: draddoksw
+  api_key: '116331693696683'
+  api_secret: QntwAtdOGl8Blr7q7lnFoHEuBJc
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: draddoksw
+  api_key: '116331693696683'
+  api_secret: QntwAtdOGl8Blr7q7lnFoHEuBJc
+  enhance_image_tag: true
+  static_image_support: false
