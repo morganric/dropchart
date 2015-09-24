@@ -6,10 +6,24 @@
 <div class="col-md-12" >
 <div class="col-md-8">
     <% @drops.each_with_index do |drop, index| %>
+    <%= link_to image_tag(drop.cover.url(:thumbnail), class: "pull-left img-thumbnail", style: "margin-right:10px;"), drop %>
     <span class="pull-right">
       <h2><%= index+1 %></h2>
     </span>
-     <h3><%= link_to drop.track, drop %></h3>
+     <h3><%= link_to drop.track, drop %>
+     <br/>
+      <small>
+
+        <strong>by</strong>
+        <%= drop.artist %>
+
+        <strong>on</strong>
+        <%= drop.label %>
+
+        <strong>from</strong>
+        <%= drop.album %>
+        </small>
+     </h3>
       <% drop.tags.each do |tag| %>
         <%= tag %>
       <% end %>
