@@ -1,6 +1,21 @@
 
 
 <div class="col-md-12" >
+
+<div class="col-md-4">
+<br/>
+  <%= image_tag @drop.cover.url(:standard) %>
+<br/>
+<p class="pull-right">
+<% if user_signed_in? %>
+  <% if current_user.try(:admin?) %>
+    <%= link_to 'Edit', edit_drop_path(@drop) %> |
+    <%= link_to 'Destroy', @drop, method: :delete, data: { confirm: 'Are you sure?' } %>
+
+<% end %>
+<% end %>
+</p>
+</div>
 <div class="col-md-8" >
 <h1>
   <%= @drop.track %>
@@ -22,7 +37,7 @@
 
 <audio controls="controls">
   Your browser does not support the <code>audio</code> element.
-  <source src="http://res.cloudinary.com/draddoksw/video/upload/<%=raw @drop.clip.file.identifier %>" type="audio/mp3">
+  <source src="http://res.cloudinary.com/draddoksw/<%=raw @drop.clip.file.identifier %>" type="audio/mp3">
 </audio>
 <br/><br/>
 
@@ -35,9 +50,6 @@
   <%= @drop.release_date %>
 </p>
 </div>
-
-
-
 
 
 <p>
@@ -56,20 +68,6 @@
 
 </div>
 
-<div class="col-md-4">
-<br/>
-  <%= image_tag @drop.cover.url(:standard) %>
-<br/>
-<p class="pull-right">
-<% if user_signed_in? %>
-  <% if current_user.try(:admin?) %>
-    <%= link_to 'Edit', edit_drop_path(@drop) %> |
-    <%= link_to 'Destroy', @drop, method: :delete, data: { confirm: 'Are you sure?' } %>
-
-<% end %>
-<% end %>
-</p>
-</div>
 
 </div>
 </div>
