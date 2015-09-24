@@ -1,8 +1,14 @@
 
 
-<h1>Drop Chart</h1>
+<h1 class="text-center">Drop Chart</h1>
 <hr>
-    <% @drops.each do |drop| %>
+
+<div class="col-md-12" >
+<div class="col-md-8">
+    <% @drops.each_with_index do |drop, index| %>
+    <span class="pull-right">
+      <h2><%= index+1 %></h2>
+    </span>
      <h3><%= link_to drop.track, drop %></h3>
       <% drop.tags.each do |tag| %>
         <%= tag %>
@@ -10,7 +16,7 @@
         <hr/>
         
     <% end %>
-  </tbody>
-</table>
-
-<br>
+</div>
+<div class="col-md-4">
+</div>
+</div>
