@@ -25,6 +25,7 @@ class DropsController < ApplicationController
   # POST /drops.json
   def create
     @drop = Drop.new(drop_params)
+    @drop.user_id = current_user.id
 
     respond_to do |format|
       if @drop.save
