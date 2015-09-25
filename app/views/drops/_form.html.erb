@@ -4,20 +4,19 @@
   <div class="form-inputs">
 
  
-    <%= f.input :user_id, as: :hidden %>
-    <%= f.input :slug, as: :hidden %>
+  <div class="col-md-6">
     
-    <%= f.input :artist %>
     <%= f.input :track %>
+    <%= f.input :artist %>
     <%= f.input :label %>
     <%= f.input :album %>
 
+
      <%= f.label :audio %>
      <%= f.file_field :audio %>
-       <br/> 
-    <%= f.label :clip %>
-    <%= f.file_field :clip %>
-      <br/> 
+   </div>
+ <div class="col-md-6">
+
     <%= f.label :cover %>
     <%= f.file_field :cover %>
       <br/> 
@@ -25,6 +24,19 @@
     <%= f.input :url %>
     <%= f.input :credits %>
     <%= f.input :tag_list %>
+</div>
+<br/> 
+    <h3>Admin</h3>
+    <hr/>
+
+    <% if user_signed_in? %>
+      <% if current_user.try(:admin?) %>
+        <%= f.input :user_id %>
+        <%= f.input :slug %>
+        <%= f.label :clip %>
+        <%= f.file_field :clip %>
+      <% end %>
+    <% end %>
 
        
     <br/> 

@@ -7,8 +7,7 @@
   <%= image_tag @drop.cover.url(:standard) %>
 <br/>
 
-  <%= image_tag ("http://placekitten.com/g/300/250
-")%>
+  <%= image_tag ("http://placehold.it/300x250")%>
 <br/>
 
 
@@ -35,9 +34,12 @@
 
   <strong>on</strong>
   <%= @drop.label %>
-
+<br/>
   <strong>from</strong>
   <%= @drop.album %>
+
+  <strong>via</strong>
+  <%= @drop.user.name %>
   </small>
 </h1>
 <p>
@@ -70,7 +72,7 @@
   </div>
 </div>
 
-<br/>
+<br/> 
 <div class="well">
   <strong>Credits:</strong>
   <%= @drop.credits %>
@@ -104,7 +106,7 @@
     ready: function(event) {
       $(this).jPlayer("setMedia", {
         title: "",
-        mp3: "<%= @drop.clip.url() %>"
+        mp3: "http://res.cloudinary.com/draddoksw/video/upload/<%=raw @drop.clip.file.identifier %>"
       });
     },
     play: function() { // Avoid multiple jPlayers playing together.
