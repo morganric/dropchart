@@ -6,7 +6,14 @@
 <br/>
   <%= image_tag @drop.cover.url(:standard) %>
 <br/>
-<p class="pull-right">
+
+  <%= image_tag ("http://placekitten.com/g/300/250
+")%>
+<br/>
+
+
+
+<p class="">
 <% if user_signed_in? %>
   <% if current_user.try(:admin?) %>
     <%= link_to 'Edit', edit_drop_path(@drop) %> |
@@ -17,6 +24,7 @@
 </p>
 </div>
 <div class="col-md-8" >
+
 <h1>
   <%= @drop.track %>
   <br/>
@@ -32,15 +40,37 @@
   <%= @drop.album %>
   </small>
 </h1>
-<hr/>
+<p>
+
+  <% @drop.tag_list.each do |tag| %>
+    <label class="label label-default">#<%= tag %></label>
+  <% end %>
+</p>
 
 
-<audio controls="controls">
-  Your browser does not support the <code>audio</code> element.
-  <source src="<%= @drop.clip.url() %>" type="audio/mp3">
-</audio>
-<br/><br/>
 
+
+<div id="jquery_jplayer_audio_1" class="jp-jplayer"></div>
+
+<div id="jp_container_audio_1" class="jp-flat-audio" role="application" aria-label="media player">
+  <div class="jp-play-control jp-control">
+    <button class="jp-play jp-button" role="button" aria-label="play" tabindex="0"></button>
+  </div>
+  <div class="jp-bar">
+    <div class="jp-seek-bar jp-seek-bar-display"></div>
+    <div class="jp-seek-bar">
+      <div class="jp-play-bar"></div>
+      <div class="jp-details"><span class="jp-title" aria-label="title"></span></div>
+      <div class="jp-timing"><span class="jp-duration" role="timer" aria-label="duration"></span></div>
+    </div>
+  </div>
+  <div class="jp-no-solution">
+    Media Player Error<br />
+    Update your browser or Flash plugin
+  </div>
+</div>
+
+<br/>
 <div class="well">
   <strong>Credits:</strong>
   <%= @drop.credits %>
@@ -53,23 +83,55 @@
 
 
 <p>
-  <%= link_to raw("<i class='glyphicon glyphicon-shopping-cart'></i>  Buy"), @drop.url, class: "btn btn-lg btn-primary white" %>
-</p>
-
-<p>
-
-  <% @drop.tag_list.each do |tag| %>
-    <label class="label label-default">#<%= tag %></label>
-  <% end %>
+  <%= link_to raw("<i class='glyphicon glyphicon-shopping-cart'></i>  Buy"), @drop.url, class: "btn btn-lg btn-primary white pull-right", target: "blank" %>
 </p>
 
 
 
 
+
+
 </div>
 
 
 </div>
 </div>
+
+<script type="text/javascript">
+  
+  jQuery(document).ready(function($) {
+  $("#jquery_jplayer_audio_1").jPlayer({
+    ready: function(event) {
+      $(this).jPlayer("setMedia", {
+        title: "",
+        mp3: "<%= @drop.clip.url() %>"
+      });
+    },
+    play: function() { // Avoid multiple jPlayers playing together.
+      $(this).jPlayer("pauseOthers");
+    },
+    timeFormat: {
+      padMin: false
+    },
+    swfPath: "js",
+    supplied: "mp3,oga",
+    cssSelectorAncestor: "#jp_container_audio_1",
+    useStateClassSkin: true,
+    autoBlur: false,
+    smoothPlayBar: true,
+    remainingDuration: true,
+    keyEnabled: true,
+    keyBindings: {
+      // Disable some of the default key controls
+      loop: null,
+      muted: null,
+      volumeUp: null,
+      volumeDown: null
+    },
+    wmode: "window"
+  });
+});
+
+</script>
 
 
