@@ -17,6 +17,7 @@ class DropsController < ApplicationController
   # GET /drops/1
   # GET /drops/1.json
   def show
+    
   end
 
   # GET /drops/new

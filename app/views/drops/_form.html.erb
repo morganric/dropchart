@@ -1,7 +1,7 @@
 <%= simple_form_for(@drop) do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-inputs">
+  <div class="form-inputs row">
 
  
   <div class="col-md-6">
@@ -10,36 +10,44 @@
     <%= f.input :artist %>
     <%= f.input :label %>
     <%= f.input :album %>
-
-
-     <%= f.label :audio %>
-     <%= f.file_field :audio %>
+     <%= f.input :credits %>
+    
    </div>
  <div class="col-md-6">
 
+     <%= f.label :audio %>
+     <%= f.file_field :audio %>
+     <br/>
     <%= f.label :cover %>
     <%= f.file_field :cover %>
       <br/> 
     <%= f.input :release_date %>
     <%= f.input :url %>
-    <%= f.input :credits %>
-    <%= f.input :tag_list %>
+    <br/>
+    <%= f.label :tag_list %>
+    <br/>
+    <%= f.text_field :tag_list, class: "form-control", :onfocus=>"this.value='';", :value=> @drop.tags.map(&:name).join(",") %>
+
 </div>
-<br/> 
-    <h3>Admin</h3>
-    <hr/>
 
-    <% if user_signed_in? %>
-      <% if current_user.try(:admin?) %>
-        <%= f.input :user_id %>
-        <%= f.input :slug %>
-        <%= f.label :clip %>
-        <%= f.file_field :clip %>
+  <div class="col-md-12 clearfix">
+    
+       <h3>Admin</h3>
+      <hr/>
+
+      <% if user_signed_in? %>
+        <% if current_user.try(:admin?) %>
+          <%= f.input :user_id %>
+          <%= f.input :slug %>
+          <%= f.label :clip %>
+          <%= f.file_field :clip %>
+        <% end %>
       <% end %>
-    <% end %>
 
-       
-    <br/> 
+         
+      <br/>
+  </div>
+  
   </div>
 
   <div class="form-actions">
