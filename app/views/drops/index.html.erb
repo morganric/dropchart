@@ -6,11 +6,18 @@
 <div class="col-md-12" >
 <div class="col-md-8">
     <% @drops.each_with_index do |drop, index| %>
-    <%= link_to image_tag(drop.cover.url(:thumbnail), class: "pull-left img-thumbnail", style: "margin-right:10px;"), drop %>
+    <div class="box">
+
     <span class="pull-right">
       <h2><%= index+1 %></h2>
     </span>
-     <h3><%= link_to drop.track, drop %>
+
+
+
+    <%= link_to image_tag(drop.cover.url(:thumbnail), class: "pull-left img-thumbnail", style: "margin-right:10px;"), drop %>
+
+     <h3 style="position:relativ; top:0px;">
+     <%= link_to drop.track, drop %>
      <br/>
       <small>
 
@@ -20,15 +27,19 @@
         <strong>on</strong>
         <%= drop.label %>
 
-        <strong>from</strong>
-        <%= drop.album %>
+   
         </small>
      </h3>
-      <% drop.tags.each do |tag| %>
-        <%= tag %>
+
+
+
+      <% drop.tags.limit(5).each do |tag| %>
+        <label class="label label-default"><%= tag %></label>
       <% end %>
-        <hr/>
-        
+      <br/>
+
+      </div>
+              <hr/>
     <% end %>
 </div>
 <div class="col-md-4">
