@@ -18,6 +18,10 @@ gem 'acts-as-taggable-on', '~> 3.4'
 source 'https://rails-assets.org' do
   gem 'rails-assets-jplayer'
 end
+gem 'friendly_id', '~> 5.1.0' # Note: You MUST use 5.0.0 or greater for Rails 4.0+
+gem "social-buttons", '~> 0.3'
+gem 'kaminari'
+
 
 group :development, :test do
   gem 'byebug'
