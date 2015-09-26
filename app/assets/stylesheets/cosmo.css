@@ -6,6 +6,49 @@
 */
 
 
+.one {
+	display: inline-block;	
+margin-top:10px;
+height: 10px;
+width: 3px;
+background-color: #fff;
+border-radius: 2px;
+margin-bottom: 2px;
+}
+
+
+.two {
+display: inline-block;
+height: 15px;
+width: 3px;
+background-color: #fff;
+border-radius: 2px;
+margin-bottom: 2px;
+
+}
+
+
+.three {
+display: inline-block;
+height: 20px;
+width: 3px;
+background-color: #fff;
+border-radius: 2px;
+margin-bottom: 2px;
+}
+
+.four {
+display: inline-block;
+height: 25px;
+width: 3px;
+background-color: #fff;
+border-radius: 2px;
+margin-bottom: 2px;
+}
+
+
+
+
 
 
 main.container {
