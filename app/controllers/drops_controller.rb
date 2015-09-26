@@ -5,7 +5,14 @@ class DropsController < ApplicationController
   # GET /drops.json
   def index
     @drops = Drop.all
+    @tags = ActsAsTaggableOn::Tag.most_used(10)
   end
+
+  def tag
+    @drops = Drop.tagged_with(params[:tag])
+    @tag = params[:tag]
+  end
+
 
   # GET /drops/1
   # GET /drops/1.json

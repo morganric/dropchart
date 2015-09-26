@@ -1,6 +1,6 @@
 
 
-<h1 class="text-center">Drop Chart</h1>
+<h1 class="text-center">Tagged: <%= @tag %></h1>
 <hr>
 
 <div class="col-md-12" >
@@ -43,17 +43,5 @@
     <% end %>
 </div>
 <div class="col-md-4">
-
-<div class="panel panel-default">
-  <div class="panel-heading">Top Tags</div>
-  <div class="panel-body">
-      <% @tags.each do |tag| %>
-        <label class="label label-default"><%= link_to tag, tag_path(tag.name), class: "white" %></label>
-      <% end %>
-  </div>
-</div>
-
-
-
 </div>
 </div>

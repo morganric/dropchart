@@ -6,6 +6,18 @@
 */
 
 
+.zero {
+	display: inline-block;	
+margin-top:10px;
+height: 5px;
+width: 3px;
+background-color: #fff;
+border-radius: 2px;
+margin-bottom: 2px;
+}
+
+
+
 .one {
 	display: inline-block;	
 margin-top:10px;

@@ -46,7 +46,7 @@
 <p>
 
   <% @drop.tag_list.each do |tag| %>
-    <label class="label label-default">#<%= tag %></label>
+    <label class="label label-default">#<%= link_to tag, tag_path(tag), :class => "white" %></label>
   <% end %>
 </p>
 
