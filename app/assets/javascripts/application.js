@@ -17,5 +17,5 @@
 //= require bootstrap-sprockets
 //= require jplayer
 
-//= require_tree .
+
 
