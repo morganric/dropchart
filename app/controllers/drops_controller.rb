@@ -19,6 +19,7 @@ class DropsController < ApplicationController
   end
 
 
+
   def tag
     @drops = Drop.tagged_with(params[:tag])
     @tag = params[:tag]

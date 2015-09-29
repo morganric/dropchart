@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :users
 
   get '/artist/:artist' => 'drops#artist', as: :artist
+  get '/label/:label' => 'drops#label', as: :label
 
   resources :profiles
   get '/tagged/:tag', to: 'drops#tag', as: :tag
