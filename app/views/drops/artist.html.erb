@@ -5,42 +5,7 @@
 
 <div class="col-md-12" >
 <div class="col-md-8">
-    <% @drops.each_with_index do |drop, index| %>
-    <div class="box">
-
-    <span class="pull-right">
-      <h2><%= index+1 %></h2>
-    </span>
-
-
-
-    <%= link_to image_tag(drop.cover.url(:thumbnail), class: "pull-left img-thumbnail", style: "margin-right:10px;"), user_drop_path(:id => drop.slug, :user_id => drop.user.profile.slug) %>
-
-     <h3 style="position:relativ; top:0px;">
-     <%= link_to drop.track, user_drop_path(:id => drop.slug, :user_id => drop.user.profile.slug) %>
-     <br/>
-      <small>
-
-        <strong>by</strong>
-        <%= link_to drop.artist, artist_path(drop.artist) %>
-
-        <strong>on</strong>
-        <%= link_to drop.label, artist_path(drop.label) %>
-
-   
-        </small>
-     </h3>
-
-
-
-      <% drop.tags.limit(5).each do |tag| %>
-        <label class="label label-default"><%= link_to tag, tag_path(tag.name), class: "white" %></label>
-      <% end %>
-      <br/>
-
-      </div>
-              <hr/>
-    <% end %>
+    <%= render 'drops', :drops => @drops %>
 </div>
 <div class="col-md-4">
 </div>

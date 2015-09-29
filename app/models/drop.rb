@@ -13,6 +13,7 @@ class Drop < ActiveRecord::Base
 	   belongs_to :user
 
 	   validates_presence_of :track
+	   validates_presence_of :artist
 
 
 end
