@@ -36,9 +36,10 @@
 
   <strong>by</strong>
   <%= link_to @drop.artist, artist_path(@drop.artist) %>
-
+  <% unless @drop.label.blank? %>
   <strong>on</strong>
   <%= link_to @drop.label, label_path(@drop.label) %>
+  <% end %>
 <br/>
 
 
