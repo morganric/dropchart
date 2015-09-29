@@ -1,0 +1,14 @@
+class CreateProfiles < ActiveRecord::Migration
+  def change
+    create_table :profiles do |t|
+      t.integer :user_id
+      t.string :image
+      t.text :bio
+      t.string :slug
+      t.string :website
+      t.string :display_name
+
+      t.timestamps null: false
+    end
+  end
+end

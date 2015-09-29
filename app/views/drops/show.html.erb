@@ -1,3 +1,7 @@
+<div class="text-center">
+
+  <%= image_tag ("http://placehold.it/728x90")%>
+</div>
 
 
 <div class="col-md-12" >
@@ -31,16 +35,15 @@
   <small>
 
   <strong>by</strong>
-  <%= @drop.artist %>
+  <%= link_to @drop.artist, artist_path(@drop.artist) %>
 
   <strong>on</strong>
   <%= @drop.label %>
 <br/>
-  <strong>from</strong>
-  <%= @drop.album %>
+
 
   <strong>via</strong>
-  <%= @drop.user.name %>
+  <%= link_to @drop.user.profile.slug, vanity_profile_path(@drop.user.profile.slug) %>
   </small>
 </h1>
 <p>

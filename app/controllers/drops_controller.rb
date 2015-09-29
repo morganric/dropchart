@@ -8,6 +8,17 @@ class DropsController < ApplicationController
     @tags = ActsAsTaggableOn::Tag.most_used(10)
   end
 
+  def artist
+    @drops = Drop.where(:artist => params[:artist])
+    @artist = params[:artist]
+  end
+
+  def label
+    @drops = Drop.where(:label => params[:label])
+    @label = params[:label]
+  end
+
+
   def tag
     @drops = Drop.tagged_with(params[:tag])
     @tag = params[:tag]

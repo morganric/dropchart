@@ -1,10 +1,9 @@
 
 
-
-<div class="col-md-12 row" >
-
-<h1 class="text-center">Drop Chart</h1>
+<h1 class="text-center">By: <%= @artist %></h1>
 <hr>
+
+<div class="col-md-12" >
 <div class="col-md-8">
     <% @drops.each_with_index do |drop, index| %>
     <div class="box">
@@ -27,9 +26,7 @@
 
         <strong>on</strong>
         <%= drop.label %>
-        <br/>
-        <strong>via</strong>
-        <%= link_to drop.user.profile.slug, vanity_profile_path(drop.user.profile.slug) %>
+
    
         </small>
      </h3>
@@ -46,21 +43,5 @@
     <% end %>
 </div>
 <div class="col-md-4">
-
-<div class="panel panel-default">
-  <div class="panel-heading">Top Tags</div>
-  <div class="panel-body">
-      <% @tags.each do |tag| %>
-        <label class="label label-default"><%= link_to tag, tag_path(tag.name), class: "white" %></label>
-      <% end %>
-  </div>
-</div>
-
-<div class="text-center">
-
-  <%= image_tag ("http://placehold.it/300x250")%>
-</div>
-
-
 </div>
 </div>

@@ -1,6 +1,6 @@
 class Drop < ActiveRecord::Base
 
-		  extend FriendlyId
+	extend FriendlyId
 	  friendly_id :track, use: :slugged
 
 	 mount_uploader :cover, ImageUploader
@@ -11,6 +11,8 @@ class Drop < ActiveRecord::Base
 	   acts_as_taggable
 
 	   belongs_to :user
+
+	   validates_presence_of :track
 
 
 end
