@@ -46,10 +46,11 @@ class DropsController < ApplicationController
   def create
     @drop = Drop.new(drop_params)
     @drop.user_id = current_user.id
+    @drop.slug = @drop.track.parameterize
 
     respond_to do |format|
       if @drop.save
-        format.html { redirect_to @drop, notice: 'Drop was successfully created.' }
+        format.html { redirect_to user_drop_path(:user_id => @drop.user.name, id: @drop.slug), notice: 'Drop was successfully created.' }
         format.json { render :show, status: :created, location: @drop }
       else
         format.html { render :new }
