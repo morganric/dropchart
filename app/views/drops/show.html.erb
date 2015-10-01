@@ -25,6 +25,8 @@
   <%= image_tag ("http://placehold.it/300x250")%>
 </div>
 
+
+
 <br/>
 
 
@@ -78,9 +80,13 @@
     <button class="jp-play jp-button" role="button" aria-label="play" tabindex="0"></button>
   </div>
   <div class="jp-bar">
-    <div class="jp-seek-bar jp-seek-bar-display"></div>
-    <div class="jp-seek-bar">
-      <div class="jp-play-bar"></div>
+    <div class="jp-seek-bar jp-seek-bar-display" ></div>
+    <div class="jp-seek-bar" >
+      <div class="jp-play-bar">
+        
+
+
+      </div>
       <div class="jp-details"><span class="jp-title" aria-label="title"></span></div>
       <div class="jp-timing"><span class="jp-duration" role="timer" aria-label="duration"></span></div>
     </div>
@@ -109,6 +115,9 @@
 <p>
   <%= link_to raw("<i class='glyphicon glyphicon-shopping-cart'></i>  Buy"), @drop.url, class: "btn btn-lg btn-primary white pull-right disabled", target: "blank" %>
 </p>
+
+<%= cl_image_tag("http://res.cloudinary.com/draddoksw/video/upload/h_75,w_700,fl_waveform,co_black,b_white,so_#{@drop.start},du_30/v#{@drop.audio.file.version }/#{ @drop.audio.file.public_id  }.png", :background=>"white", :color=>"black", :width=>500, :height=>200, :flags=>:waveform, :resource_type=>"video", class: "img-responsive") %>
+
 
 
 <% end %>
