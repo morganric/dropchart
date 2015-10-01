@@ -1,8 +1,15 @@
  <% @drops.each_with_index do |drop, index| %>
+<% if params[:page].nil? || params[:page] == "0" || params[:page] == "1" %>
+    <% x = 0 %>
+  <% else %>
+    <% page = params[:page].to_i - 1 %>
+    <% x = page * 10 %>
+<% end %>
+
 <div class="box">
 
     <span class="pull-right">
-      <h2><%= index+1 %></h2>
+      <h2><%= index+x+1 %></h2>
     </span>
 
 

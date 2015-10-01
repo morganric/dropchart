@@ -1,6 +1,6 @@
 class Drop < ActiveRecord::Base
 
-	
+	paginates_per 10
  extend FriendlyId
   friendly_id :track, use: :slugged
 

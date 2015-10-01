@@ -6,7 +6,7 @@ class DropsController < ApplicationController
   # GET /drops
   # GET /drops.json
   def index
-    @drops = Drop.all.order('plays DESC')
+    @drops = Drop.all.order('plays DESC').page params[:page]
     @tags = ActsAsTaggableOn::Tag.most_used(10)
   end
 
