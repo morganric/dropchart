@@ -1,4 +1,4 @@
-<div class="text-center">
+<div class="text-center hidden">
 
   <%= image_tag ("http://placehold.it/728x90")%>
 </div>
@@ -10,10 +10,15 @@
 <br/>
   <%= image_tag @drop.cover.url(:standard) %>
 <br/>
-<br/>
+<p>
+  <br/>
+  <strong>Released on:</strong>
+  <%= @drop.release_date %>
+</p>
+<div class="hidden">
 
   <%= image_tag ("http://placehold.it/300x250")%>
-<br/>
+</div>
 
 <br/>
 
@@ -21,7 +26,7 @@
 
 <p class="">
 <% if user_signed_in? %>
-  <% if current_user.try(:admin?) %>
+  <% if current_user.try(:admin?) or current_user == @drop.user %>
     <%= link_to 'Edit', edit_drop_path(@drop) %> |
     <%= link_to 'Destroy', @drop, method: :delete, data: { confirm: 'Are you sure?' } %>
 
@@ -46,11 +51,13 @@
 
 
   <strong>via</strong>
-  <%= link_to @drop.user.profile.slug, vanity_profile_path(@drop.user.profile.slug) %>
+  <%= link_to @drop.user.profile.display_name || @drop.user.profile.slug , vanity_profile_path(@drop.user.profile.slug) %>
   </small>
 </h1>
-<p>
 
+
+<p>
+<label class="label label-success "><i class='glyphicon glyphicon-play'> </i><%= pluralize(@drop.plays, 'play') %></label>
   <% @drop.tag_list.each do |tag| %>
     <label class="label label-default">#<%= link_to tag, tag_path(tag), :class => "white" %></label>
   <% end %>
@@ -83,19 +90,23 @@
 <div class="well">
   <strong>Credits:</strong>
   <%= @drop.credits %>
-  <p>
-  <br/>
-  <strong>Released on:</strong>
-  <%= @drop.release_date %>
-</p>
+  
 </div>
 
+<% unless @drop.url.blank? %>
 
 <p>
   <%= link_to raw("<i class='glyphicon glyphicon-shopping-cart'></i>  Buy"), @drop.url, class: "btn btn-lg btn-primary white pull-right", target: "blank" %>
 </p>
 
+<% else %>
 
+<p>
+  <%= link_to raw("<i class='glyphicon glyphicon-shopping-cart'></i>  Buy"), @drop.url, class: "btn btn-lg btn-primary white pull-right disabled", target: "blank" %>
+</p>
+
+
+<% end %>
 
 
 
@@ -139,6 +150,21 @@
     },
     wmode: "window"
   });
+
+
+
+        $('.jp-play').on('click', function(e){
+    
+          e.preventDefault();
+          $('#jp_container_audio_1').toggleClass('jp-state-playing');
+          $.ajax("/drops/<%= @drop.id %>/play");
+         console.log('play');
+
+       
+
+  
+
+        });
 });
 
 </script>

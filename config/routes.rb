@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   resources :profiles
   get '/tagged/:tag', to: 'drops#tag', as: :tag
+  get '/drops/:id/play' => 'drops#plays', as: :post_play
 
   resources :drops
   mount Upmin::Engine => '/admin'
