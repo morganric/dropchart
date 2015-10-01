@@ -16,6 +16,7 @@ class Drop < ActiveRecord::Base
 	   validates_presence_of :track
 	   validates_presence_of :artist
 	   validates_presence_of :audio
+	   validates_presence_of :cover
 
 	   validates_uniqueness_of :track
 

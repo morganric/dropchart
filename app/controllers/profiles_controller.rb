@@ -1,19 +1,27 @@
 class ProfilesController < ApplicationController
-  before_action :set_profile, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate_user!,  except: [:show]
-  
-  # GET /profiles
+
+
+  before_action :set_profile, only: [:show, :edit, :update, :destroy, :popular, :favourites]
+  before_action :authenticate_user!, :except => [:show, :page, :popular, :favourites, :index]
+  before_action :admin_only, :except => [:show, :page, :popular, :edit, :index, :favourites, :update]
+
   # GET /profiles
   # GET /profiles.json
   def index
-    @profiles = Profile.all
+    # @profiles = Profile.all.order('rating_number ASC').page params[:page]
+    @users = User.all.order('posts_count DESC').page params[:page]
+
   end
 
   # GET /profiles/1
   # GET /profiles/1.json
   def show
-    @drops = @profile.user.drops
+    
+    # @posts = Post.where(:user_id => @profile.user.id).reverse.page params[:page]
+    
+    @drops = Drop.where(:user_id => @profile.user.id).order('created_at DESC').page params[:page]
   end
+
 
   # GET /profiles/new
   def new
@@ -22,13 +30,14 @@ class ProfilesController < ApplicationController
 
   # GET /profiles/1/edit
   def edit
+      authorize @profile
   end
 
   # POST /profiles
   # POST /profiles.json
   def create
     @profile = Profile.new(profile_params)
-
+    authorize @profile
     respond_to do |format|
       if @profile.save
         format.html { redirect_to @profile, notice: 'Profile was successfully created.' }
@@ -65,6 +74,13 @@ class ProfilesController < ApplicationController
   end
 
   private
+
+  def admin_only
+    unless current_user.admin? 
+      redirect_to :root, :alert => "Access denied."
+    end
+  end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_profile
       @profile = Profile.friendly.find(params[:id])
@@ -72,6 +88,6 @@ class ProfilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
-      params.require(:profile).permit(:user_id, :image, :bio, :slug, :website, :display_name)
+      params.require(:profile).permit(:display_name, :bio, :image, :user_id, :slug, :website , :views, :rating_number)
     end
 end

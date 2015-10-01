@@ -1,5 +1,7 @@
 class DropsController < ApplicationController
   before_action :set_drop, only: [:show, :edit, :update, :destroy]
+   before_action :authenticate_user!, :except => [:show,  :index]
+
 
   # GET /drops
   # GET /drops.json

@@ -19,4 +19,6 @@ class User < ActiveRecord::Base
 
    has_many :drops
    has_one :profile
+
+   # validates_presence_of :name
 end
