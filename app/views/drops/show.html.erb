@@ -124,7 +124,7 @@
     ready: function(event) {
       $(this).jPlayer("setMedia", {
         title: "",
-        mp3: "http://res.cloudinary.com/draddoksw/video/upload/du_30/v<%=raw @drop.audio.file.version %>/<%=raw @drop.audio.file.filename %>"
+        mp3: "http://res.cloudinary.com/draddoksw/video/upload/so_<%= @drop.start %>,du_30/v<%=raw @drop.audio.file.version %>/<%=raw @drop.audio.file.filename %>"
       });
     },
     play: function() { // Avoid multiple jPlayers playing together.

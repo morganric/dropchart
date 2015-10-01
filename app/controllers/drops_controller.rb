@@ -110,6 +110,7 @@ class DropsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def drop_params
-      params.require(:drop).permit(:audio, :clip, :cover, :release_date, :url, :user_id, :slug, :tag_list, :artist, :track, :label, :album, :credits, :plays)
+      params.require(:drop).permit(:audio, :clip, :cover, :release_date, :url, :user_id, :slug, :tag_list, 
+                    :start, :artist, :track, :label, :album, :credits, :plays)
     end
 end

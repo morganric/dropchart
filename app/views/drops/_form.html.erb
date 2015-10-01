@@ -23,7 +23,7 @@
       <br/> 
     <%= f.input :release_date %>
     <%= f.input :url %>
-    <br/>
+    <%= f.input :start %>
     <%= f.label :tag_list %>
     <br/>
     <%= f.text_field :tag_list, class: "form-control", :onfocus=>"this.value='';", :value=> @drop.tags.map(&:name).join(",") %>
@@ -41,6 +41,8 @@
           <%= f.input :slug %>
           <%= f.label :clip %>
           <%= f.file_field :clip %>
+              <br/>
+          <%= f.input :plays %>
         <% end %>
       <% end %>
 
