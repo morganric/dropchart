@@ -1,3 +1,17 @@
+<style type="text/css">
+  
+
+  .jp-seek-bar-display, .jp-seek-bar {
+    background-image: url('http://res.cloudinary.com/draddoksw/video/upload/h_65,w_650,fl_waveform,co_black,b_white,so_<%= @drop.start %>,du_30/v<%= @drop.audio.file.version %>/<%= @drop.audio.file.public_id  %>.png') !important;
+    background-color: white !important;
+  }
+
+  .jp-flat-audio .jp-play-bar {
+    background-color: white !important;
+    opacity: 0.5;
+  }
+</style>
+
 <div class="text-center hidden">
 
   <%= image_tag ("http://placehold.it/728x90")%>
@@ -116,7 +130,7 @@
   <%= link_to raw("<i class='glyphicon glyphicon-shopping-cart'></i>  Buy"), @drop.url, class: "btn btn-lg btn-primary white pull-right disabled", target: "blank" %>
 </p>
 
-<%= cl_image_tag("http://res.cloudinary.com/draddoksw/video/upload/h_75,w_700,fl_waveform,co_black,b_white,so_#{@drop.start},du_30/v#{@drop.audio.file.version }/#{ @drop.audio.file.public_id  }.png", :background=>"white", :color=>"black", :width=>500, :height=>200, :flags=>:waveform, :resource_type=>"video", class: "img-responsive") %>
+<%#= cl_image_tag("http://res.cloudinary.com/draddoksw/video/upload/h_75,w_700,fl_waveform,co_black,b_white,so_#{@drop.start},du_30/v#{@drop.audio.file.version }/#{ @drop.audio.file.public_id  }.png", :background=>"white", :color=>"black", :width=>500, :height=>200, :flags=>:waveform, :resource_type=>"video", class: "img-responsive") %>
 
 
 
