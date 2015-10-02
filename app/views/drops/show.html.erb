@@ -188,23 +188,13 @@ background-position:center;
       volumeUp: null,
       volumeDown: null
     },
-    wmode: "window"
+    wmode: "window",
+    ended: $.ajax("/drops/<%= @drop.id %>/play")
   });
 
 
 
-        $('.jp-play').on('click', function(e){
-    
-          e.preventDefault();
-          $('#jp_container_audio_1').toggleClass('jp-state-playing');
-          $.ajax("/drops/<%= @drop.id %>/play");
-         console.log('play');
-
-       
-
   
-
-        });
 });
 
 </script>
