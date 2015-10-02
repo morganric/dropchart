@@ -4,6 +4,9 @@
   .jp-seek-bar-display, .jp-seek-bar {
     background-image: url('http://res.cloudinary.com/draddoksw/video/upload/h_65,w_650,fl_waveform,co_black,b_white,so_<%= @drop.start %>,du_30/v<%= @drop.audio.file.version %>/<%= @drop.audio.file.public_id  %>.png') !important;
     background-color: white !important;
+    background-repeat:no-repeat;
+background-size:contain;
+background-position:center;
   }
 
   .jp-flat-audio .jp-play-bar {
