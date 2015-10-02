@@ -113,12 +113,12 @@
   </div>
 </div>
 
-<p>
+<div style="margin-top:5px; margin-bottom:10px;">
 <label class="label label-success "><i class='glyphicon glyphicon-play'> </i><%= pluralize(@drop.plays, 'play') %></label>
   <% @drop.tag_list.each do |tag| %>
     <label class="label label-default">#<%= link_to tag, tag_path(tag), :class => "white" %></label>
   <% end %>
-</p>
+</div>
 
 
 <div class="well">
