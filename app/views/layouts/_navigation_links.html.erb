@@ -2,6 +2,9 @@
 <li>
 <%= link_to raw(' <i class="glyphicon glyphicon-cloud-upload" ></i> Upload'), new_drop_path %>
 </li>
+<li>
+<%= link_to raw(' <i class="glyphicon glyphicon-star" ></i> Featured'), featured_path %>
+</li>
 
 <% if user_signed_in? %>
   <li class="dropdown ">

@@ -8,6 +8,7 @@ class DropsController < ApplicationController
   def index
     @drops = Drop.all.order('plays DESC').page params[:page]
     @tags = ActsAsTaggableOn::Tag.most_used(10)
+    @featured = Drop.where(:featured => true).order('plays DESC').page params[:page]
   end
 
   def featured

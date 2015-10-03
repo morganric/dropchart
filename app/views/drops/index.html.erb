@@ -25,6 +25,15 @@ Drop Chart
   </div>
 </div>
 
+<div class="panel panel-default">
+  <div class="panel-heading">Featured</div>
+  <div class="panel-body text-center">
+      <% @featured.each do |drop| %>
+        <%= link_to image_tag(drop.cover.url(:featured)), user_drop_path(:user_id => drop.user.profile.slug, id: drop.slug) %>
+      <% end %>
+  </div>
+</div>
+
 <div class="text-center hidden">
 
   <%= image_tag ("http://placehold.it/300x250")%>
