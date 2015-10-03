@@ -37,6 +37,7 @@
 
       <% if user_signed_in? %>
         <% if current_user.try(:admin?) %>
+          <%= f.input :featured %>
           <%= f.input :user_id %>
           <%= f.input :slug %>
           <%= f.label :clip %>

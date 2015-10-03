@@ -20,7 +20,7 @@ Drop Chart
   <div class="panel-heading">Top Tags</div>
   <div class="panel-body">
       <% @tags.each do |tag| %>
-        <label class="label label-default"><%= link_to tag, tag_path(tag.name), class: "white" %></label>
+        <label class="label label-default"><%= link_to "##{tag}", tag_path(tag.name), class: "white" %></label>
       <% end %>
   </div>
 </div>

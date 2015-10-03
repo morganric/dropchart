@@ -126,13 +126,16 @@ background-position:center;
   <% end %>
 </div>
 
-
-<div class="well">
+<% unless @drop.credits.blank?  %>
+  <div class="well">
   <strong>Credits:</strong>
   <%= @drop.credits %>
   
 </div>
 
+<% end %>
+
+<hr/>
  <strong>Starts at:</strong>
   <%= @drop.start %> seconds
     <br/>

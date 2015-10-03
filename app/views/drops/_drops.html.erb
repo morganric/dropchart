@@ -36,7 +36,7 @@
 
      <label class="label label-success "><i class='glyphicon glyphicon-play'> </i><%= pluralize(drop.plays, 'play') %></label>
       <% drop.tags.limit(5).each do |tag| %>
-        <label class="label label-default"><%= link_to tag, tag_path(tag.name), class: "white" %></label>
+        <label class="label label-default"><%= link_to "##{tag}", tag_path(tag.name), class: "white" %></label>
       <% end %>
       <br/>
 

@@ -1,0 +1,28 @@
+<div class="col-md-12 row" >
+
+<h1 class="">
+Featured
+
+</h1>
+<hr>
+<div class="col-md-12">
+   
+
+    <% @drops.limit(9).each do |drop| %>
+
+    	<div class="col-md-4" >
+    		<%= link_to image_tag(drop.cover.url(:standard), class: "img-thumbnail"), user_drop_path(:user_id => drop.user.profile.slug, id: drop.slug) %>	
+    		<h3><%= link_to drop.track.titleize, user_drop_path(:user_id => drop.user.profile.slug, id: drop.slug) %>
+    		<small>
+    		<br/>
+    		by <%= link_to drop.artist.titleize, artist_path(drop.artist) %>
+    		<br/>
+    		via <%= link_to drop.user.profile.display_name || drop.user.name, vanity_profile_path(id: drop.user.profile.slug) %>
+    			</small>
+    		</h3>
+    	</div>
+    <% end  %>
+</div>
+
+</div>
+</div>
