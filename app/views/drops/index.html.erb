@@ -25,10 +25,10 @@ Drop Chart
   </div>
 </div>
 
-<div class="panel panel-default">
-  <div class="panel-heading">Featured</div>
+<div class="panel panel-primary">
+  <div class="panel-heading"><%= link_to "Featured", featured_path, :class => "white" %></div>
   <div class="panel-body text-center">
-      <% @featured.each do |drop| %>
+      <% @featured.limit(3).each do |drop| %>
         <%= link_to image_tag(drop.cover.url(:featured)), user_drop_path(:user_id => drop.user.profile.slug, id: drop.slug) %>
       <% end %>
   </div>

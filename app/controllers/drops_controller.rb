@@ -12,7 +12,7 @@ class DropsController < ApplicationController
   end
 
   def featured
-    @drops = Drop.where(:featured => true).order('plays DESC').page params[:page]
+    @drops = Drop.where(:featured => true).order('created_at DESC').page params[:page]
     
   end
 
