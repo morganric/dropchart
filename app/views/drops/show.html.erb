@@ -193,7 +193,9 @@ background-position:center;
       volumeDown: null
     },
     wmode: "window",
-    ended: $.ajax("/drops/<%= @drop.id %>/play")
+    ended: function() { // Avoid multiple jPlayers playing together.
+      $.ajax("/drops/<%= @drop.id %>/play")
+    }
   });
 
 
