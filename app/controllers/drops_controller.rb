@@ -1,7 +1,9 @@
 class DropsController < ApplicationController
-  before_action :set_drop, only: [:show, :edit, :update, :destroy, :plays]
+  before_action :set_drop, only: [:show, :edit, :update, :destroy, :plays, :embed]
    before_action :authenticate_user!, :except => [:show,  :index]
 
+   skip_before_filter  :verify_authenticity_token
+  after_filter :allow_iframe
 
   # GET /drops
   # GET /drops.json
@@ -39,6 +41,10 @@ class DropsController < ApplicationController
   # GET /drops/1.json
   def show
     
+  end
+
+  def embed
+    render layout: 'embed'
   end
 
   def plays
@@ -115,6 +121,12 @@ class DropsController < ApplicationController
       @drop = Drop.friendly.find(params[:id])
     end
 
+    
+  def allow_iframe
+    response.headers['X-Frame-Options'] = "ALLOWALL"
+  end
+
+    
     # Never trust parameters from the scary internet, only allow the white list through.
     def drop_params
       params.require(:drop).permit(:audio, :clip, :cover, :release_date, :url, :user_id, :slug, :tag_list, 

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/artist/:artist' => 'drops#artist', as: :artist
   get '/label/:label' => 'drops#label', as: :label
     get '/featured' => 'drops#featured', as: :featured
+  get ':user_id/:id/embed' => 'drops#embed', as: :embed
 
   resources :profiles
   get '/tagged/:tag', to: 'drops#tag', as: :tag

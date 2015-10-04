@@ -1,0 +1,210 @@
+<div id="cover" class="play jp-play" style="">
+</div>
+
+<div class="embed">
+
+<h1><%= link_to @drop.track, user_drop_url(user_id: @drop.user.profile.slug, id: @drop.slug), :target => "_blank" %>
+<br/>
+<small>via <%= link_to @drop.user.name, vanity_profile_url(@drop.user.profile.slug) , :target => "_blank" %></small>
+</h1>
+
+
+
+<div id="jquery_jplayer_audio_1" class="jp-jplayer"></div>
+
+<div id="jp_container_audio_1" class="jp-flat-audio" role="application" aria-label="media player">
+  <div class="jp-play-control jp-control">
+    <button class="jp-play jp-button" role="button" aria-label="play" tabindex="0"></button>
+  </div>
+  <div class="jp-bar">
+    <div class="jp-seek-bar jp-seek-bar-display" ></div>
+    <div class="jp-seek-bar" >
+      <div class="jp-play-bar">
+        
+
+
+      </div>
+      <div class="jp-details"><span class="jp-title" aria-label="title"></span></div>
+      <div class="jp-timing"><span class="jp-duration" role="timer" aria-label="duration"></span></div>
+    </div>
+  </div>
+  <div class="jp-no-solution">
+    Media Player Error<br />
+    Update your browser or Flash plugin
+  </div>
+</div>
+ 
+  <br/>
+<label class="label label-success">
+
+     <i class="glyphicon glyphicon-play"></i> 
+
+     <%= pluralize(@drop.plays.to_i, 'play') %>
+   </label>&nbsp;
+  <% @drop.tag_list.each do |tag| %>
+      <label class="label label-default white"> #
+      <%= link_to tag, tag_path(tag), :target => "_blank", class: "white" %></label>
+  <% end %>
+
+<br/>
+<div class="col-md-12 row" >
+
+<h3 class="">
+<%= image_tag("drop-logo.png", :height => "40") %>
+Drop Chart
+
+</h3>
+
+</div>
+<style type="text/css">
+
+.embed {
+  padding: 10px;
+}
+
+  .jp-seek-bar-display, .jp-seek-bar {
+    background-image: url('http://res.cloudinary.com/draddoksw/video/upload/h_65,w_650,fl_waveform,co_black,b_white,so_<%= @drop.start %>,du_30/v<%= @drop.audio.file.version %>/<%= @drop.audio.file.public_id  %>.png') !important;
+    background-color: white !important;
+    background-repeat:no-repeat;
+background-size:contain;
+background-position-y:center;
+  }
+
+  .jp-flat-audio .jp-play-bar {
+    background-color: white !important;
+    opacity: 0.5;
+  }
+
+  .jp-flat-audio .jp-control {
+    background-color: #3fb618 !important;
+    border-radius: 50%;
+  }
+
+  .jp-bar {
+    margin-left: 10px;
+  }
+
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+}
+.btn-circle.btn-lg {
+  width: 50px;
+  height: 50px;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 25px;
+}
+.btn-circle.btn-xl {
+  width: 70px;
+  height: 70px;
+  padding: 10px 16px;
+  font-size: 24px;
+  line-height: 1.33;
+  border-radius: 35px;
+}
+
+
+    button.col-sm-1 {
+        height: 40px !important;
+    }
+
+#cover {
+    position: absolute;
+    content: '';
+    background-image:url("<%= @drop.cover.url(:large) %>"); 
+     background-color:white !important; 
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    z-index: 2;
+    background-size:cover;
+
+}
+
+h1 {
+    margin-top:0px; 
+}
+
+.middle {
+  margin: auto !important;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+
+</style>
+
+<script type="text/javascript">
+    
+$(document).ready(function(){
+
+
+  $('#cover').prepend('<br/><div class="col-md-12"><div class="panel embed pull-left clearfix"><div class=""></div><div class="pull-left"><h1><i class="icon-control-play i-2x"></i></h1></div><h1><%= @drop.track.titleize %> <br/> <small> via <%= @drop.user.name %></small></h1></div></div> <div  style="position:absolute; bottom: 0px; padding:15px; color:black; background-color:white; width:100%;"><h3><%= image_tag("http://dropchart.herokuapp.com/assets/drop-logo-547f85b8d1677dce20b5383788a7a9fe53018208bc11d93b749a283ef3a90c36.png", :height => "45", :class=>"pull-left", :style => "position:relative; bottom:10px;") %> DropChart</h3></div>')
+
+
+  $("#jquery_jplayer_audio_1").jPlayer({
+    ready: function(event) {
+      $(this).jPlayer("setMedia", {
+        title: "",
+        mp3: "http://res.cloudinary.com/draddoksw/video/upload/so_<%= @drop.start %>,du_30/v<%=raw @drop.audio.file.version %>/<%=raw @drop.audio.file.filename %>"
+      });
+    },
+    play: function() { // Avoid multiple jPlayers playing together.
+      $(this).jPlayer("pauseOthers");
+    },
+    timeFormat: {
+      padMin: false
+    },
+    swfPath: "js",
+    supplied: "mp3,oga",
+    cssSelectorAncestor: "#jp_container_audio_1",
+    useStateClassSkin: true,
+    autoBlur: false,
+    smoothPlayBar: true,
+    remainingDuration: true,
+    keyEnabled: true,
+    keyBindings: {
+      // Disable some of the default key controls
+      loop: null,
+      muted: null,
+      volumeUp: null,
+      volumeDown: null
+    },
+    wmode: "window",
+    ended: function() { // Avoid multiple jPlayers playing together.
+      $.ajax("/drops/<%= @drop.id %>/play")
+    }
+  });
+
+
+
+        $('body').on('click', function(e){
+            e.preventDefault;
+            $('#cover img').remove();
+            $('#embed').fadeIn();
+            $('#cover').fadeOut();
+            $("#jquery_jplayer_audio_1").jPlayer('play');
+          
+      });
+
+
+});
+
+
+
+
+</script>
+
+
+
+
+

@@ -1,3 +1,40 @@
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Embed: <%= @drop.track %></h4>
+      </div>
+      <div class="modal-body">
+
+        <iframe src="<%= embed_url(:user_id => @drop.user.name, :id => @drop.slug) %>" frameborder="none" width="550" height="300"></iframe>
+        <br>
+        <textarea cols="60"  id='fe_text' rows="3"><iframe src="<%= embed_url(:user_id => @drop.user.name, :id => @drop.slug) %>" frameborder="none" width="550" height="300"></iframe><br/><a href="<%= user_drop_url(:user_id => @drop.user.profile.slug, :id => @drop.slug) %>" target="_blank"><%= @drop.track %></a> via <a href="<%= vanity_profile_url(:id => @drop.user.profile.slug) %>" target="_blank"><%= @drop.user.profile.display_name || @drop.user.name %> </a> on <a href="<%= root_url %>" target="_blank">DropChart</a></textarea>
+
+<script>
+  $(document).ready(function() {
+    var clip = new ZeroClipboard($("#d_clip_button"))
+  });
+
+  $("#clear-test").on("click", function(){
+    $("#fe_text").val("Copy me!");
+    $("#testarea").val("");
+  });
+</script>
+ </div> <div class="modal-footer"> <a href="#" class="btn btn-default" data-dismiss="modal">Close</a> 
+
+   <button class='my_clip_button btn btn-primary' data-clipboard-target='fe_text' data-clipboard-text='Default clipboard text from attribute' id='d_clip_button' title='Click me to copy to clipboard.'>
+    <b>Copy To Clipboard</b>
+  </button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
 <style type="text/css">
   
 
@@ -145,10 +182,15 @@ background-position:center;
  
 
 <p class="pull-right">
+
+
+  <a type="button" class="btn btn-primary btn-md" data-toggle="modal" data-target="#myModal">
+    <i class="glyphicon glyphicon-menu-left"></i>/<i class="glyphicon glyphicon-menu-right"></i> Embed
+  </a>
 <% if user_signed_in? %>
   <% if current_user.try(:admin?) or current_user == @drop.user %>
-    <%= link_to 'Edit', edit_drop_path(@drop) %> |
-    <%= link_to 'Destroy', @drop, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <%= link_to 'Edit', edit_drop_path(@drop), :class => "btn btn-md btn-info" %>
+    <%= link_to 'Destroy', @drop, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger btn-md" %>
 
 <% end %>
 <% end %>

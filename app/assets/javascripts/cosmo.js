@@ -5,3 +5,4 @@
 //= require cosmo/loader
 //= require cosmo/bootswatch
 //= require jplayer
+//= require zeroclipboard
